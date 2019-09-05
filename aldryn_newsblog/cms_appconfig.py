@@ -97,6 +97,11 @@ class NewsBlogConfig(TranslatableModel, AppHookConfig):
         default=True,
         help_text=_('Automatically create authors from logged-in user?'),
     )
+    author_no_photo = models.BooleanField(
+        _("Display No-photo icon"),
+        default=True,
+        help_text=_('Display "No photo" icon if the user does not have one.'),
+    )
 
     # ALDRYN_NEWSBLOG_SEARCH
     search_indexed = models.BooleanField(
