@@ -227,6 +227,7 @@ class ArticleListBase(AppConfigMixin, AppHookCheckMixin, TemplatePrefixMixin,
     def get_context_data(self, **kwargs):
         context = super(ArticleListBase, self).get_context_data(**kwargs)
         context['pagination'] = self.get_pagination_options()
+        context['aldryn_newsblog_display_author_no_photo'] = self.config.author_no_photo
         return context
 
 

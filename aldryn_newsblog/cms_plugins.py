@@ -30,6 +30,11 @@ class TemplatePrefixMixin(object):
 class NewsBlogPlugin(TemplatePrefixMixin, CMSPluginBase):
     module = 'News & Blog'
 
+    def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
+        context['aldryn_newsblog_display_author_no_photo'] = instance.app_config.author_no_photo
+        return context
+
 
 class AdjustableCacheMixin(object):
     """
@@ -68,6 +73,7 @@ class NewsBlogArchivePlugin(AdjustableCacheMixin, NewsBlogPlugin):
     form = forms.NewsBlogArchivePluginForm
 
     def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
         request = context.get('request')
         context['instance'] = instance
 
@@ -88,6 +94,7 @@ class NewsBlogArticleSearchPlugin(NewsBlogPlugin):
     form = forms.NewsBlogArticleSearchPluginForm
 
     def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
         context['instance'] = instance
         context['query_url'] = default_reverse('{0}:article-search'.format(
             instance.app_config.namespace), default=None)
@@ -102,6 +109,7 @@ class NewsBlogAuthorsPlugin(NewsBlogPlugin):
     form = forms.NewsBlogAuthorsPluginForm
 
     def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
         request = context.get('request')
         context['instance'] = instance
         context['authors_list'] = instance.get_authors(request)
@@ -121,6 +129,7 @@ class NewsBlogCategoriesPlugin(NewsBlogPlugin):
     cache = False
 
     def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
         request = context.get('request')
         context['instance'] = instance
         context['categories'] = instance.get_categories(request)
@@ -138,6 +147,7 @@ class NewsBlogFeaturedArticlesPlugin(NewsBlogPlugin):
     form = forms.NewsBlogFeaturedArticlesPluginForm
 
     def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
         request = context.get('request')
         context['instance'] = instance
         context['articles_list'] = instance.get_articles(request)
@@ -152,6 +162,7 @@ class NewsBlogLatestArticlesPlugin(AdjustableCacheMixin, NewsBlogPlugin):
     form = forms.NewsBlogLatestArticlesPluginForm
 
     def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
         request = context.get('request')
         context['instance'] = instance
         context['article_list'] = instance.get_articles(request)
@@ -177,6 +188,7 @@ class NewsBlogRelatedPlugin(AdjustableCacheMixin, NewsBlogPlugin):
         return None
 
     def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
         request = context.get('request')
         context['instance'] = instance
         article = self.get_article(request)
@@ -194,6 +206,7 @@ class NewsBlogTagsPlugin(NewsBlogPlugin):
     form = forms.NewsBlogTagsPluginForm
 
     def render(self, context, instance, placeholder):
+        context = super().render(context, instance, placeholder)
         request = context.get('request')
         context['instance'] = instance
         context['tags'] = instance.get_tags(request)
