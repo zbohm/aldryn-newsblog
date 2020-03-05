@@ -32,7 +32,8 @@ class NewsBlogPlugin(TemplatePrefixMixin, CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context = super().render(context, instance, placeholder)
-        context['aldryn_newsblog_display_author_no_photo'] = instance.app_config.author_no_photo
+        author_no_photo = instance.app_config.author_no_photo if hasattr(instance, 'app_config') else False
+        context['aldryn_newsblog_display_author_no_photo'] = author_no_photo
         return context
 
 
