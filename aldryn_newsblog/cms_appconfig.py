@@ -94,6 +94,11 @@ class NewsBlogConfig(TranslatableModel, AppHookConfig):
         default=True,
         help_text=_('Automatically create authors from logged-in user?'),
     )
+    hide_author = models.BooleanField(
+        _("Hide author"),
+        default=False,
+        help_text=_("Don't show the author of the article."),
+    )
     author_no_photo = models.BooleanField(
         _("Display No-photo icon"),
         default=True,

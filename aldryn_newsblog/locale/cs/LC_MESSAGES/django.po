@@ -252,6 +252,14 @@ msgid "Automatically create authors from logged-in user?"
 msgstr "Automaticky vytvořit autory z přihlášených uživatelů?"
 
 #: cms_appconfig.py:98
+msgid "Hide author"
+msgstr "Skrýt autora"
+
+#: cms_appconfig.py:100
+msgid "Don't show the author of the article."
+msgstr "Nezobrazovat autora článku."
+
+#: cms_appconfig.py:98
 msgid "Display No-photo icon"
 msgstr "Zobrazit ikonu Bez fotografie"
 
